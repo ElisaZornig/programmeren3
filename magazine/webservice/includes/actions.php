@@ -9,54 +9,66 @@ function getBooks()
             "id" => 1,
             "title" => "De Gorgels",
             "author" => "Jochem Myjer",
+            "image" => "De_Gorgels.png"
         ],
         [
             "id" => 2,
             "title" => "Dolfje Weerwolfje",
             "author" => "Paul van Loon",
+            "image" => "Dolfje_weerwoflje.jpg"
         ],
         [
             "id" => 3,
             "title" => "Pluk van de Petteflet",
             "author" => "Annie M.G. Schmidt",
+            "image" => "Pluk_van_de_Petteflet.jpg"
         ],
         [
             "id" => 4,
             "title" => "Jip en Janneke",
             "author" => "Annie M.G. Schmidt",
+            "image" => "Jip_en_janneke.jpg"
         ],
         [
             "id" => 5,
             "title" => "Kruistocht in Spijkerbroek",
             "author" => "Thea Beckman",
+            "image" => "kruistocht.jpg"
         ],
         [
             "id" => 6,
             "title" => "Pietje Bell",
             "author" => "Chris van Abkoude",
+            "image" => "pietje.jpg"
         ],
         [
             "id" => 7,
             "title" => "Koning van Katoren",
             "author" => "Jan Terlouw",
+            "image" => "koning.png"
         ],
         [
             "id" => 8,
             "title" => "Oorlogswinter",
             "author" => "Jan Terlouw",
+            "image" => "oorlogs.jpg"
         ],
         [
             "id" => 9,
             "title" => "Dagboek van een muts",
             "author" => "Rachel Renée Russell",
+            "image" => "dagboek.jpeg"
         ],
         [
             "id" => 10,
             "title" => "Het leven van een loser",
             "author" => "Jeff Kinney",
+            "image" => "loser.jpg"
         ]
     ];
 }
+
+
 
 /**
  * @param $id

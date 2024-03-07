@@ -1,19 +1,19 @@
 <?php
-////Require functions for actions
-//require_once "includes/actions.php";
-//
-////Based on the existence of the GET parameter, 1 of the 2 functions will be called
-//if (!isset($_GET['id'])) {
-//    $data = getBooks();
-//} else {
-//    $data = getBooksDetails($_GET['id']);
-//}
-//
-////Set the header & output JSON so the client will know what to expect.
-//header("Content-Type: application/json");
-//echo json_encode($data);
-//exit;
-//?>
+//Require functions for actions
+require_once "includes/actions.php";
+
+//Based on the existence of the GET parameter, 1 of the 2 functions will be called
+if (!isset($_GET['id'])) {
+    $data = getBooks();
+} else {
+    $data = getBooksDetails($_GET['id']);
+}
+
+//Set the header & output JSON so the client will know what to expect.
+header("Content-Type: application/json");
+echo json_encode($data);
+exit;
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,7 +38,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove" >
                 Verwijder uit favorieten
             </button>
             <button class="details">
@@ -51,7 +51,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove">
                 Verwijder uit favorieten
             </button>
             <button class="details">
@@ -64,7 +64,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove">
                 Verwijder uit favorieten
             </button>
             <button class="details">
@@ -77,7 +77,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove" >
                 Verwijder uit favorieten
             </button>
             <button class="details">
@@ -90,7 +90,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove" >
                 Verwijder uit favorieten
             </button>
             <button class="details">
@@ -103,7 +103,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove" >
                 Verwijder uit favorieten
             </button>
             <button class="details">
@@ -116,7 +116,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove" >
                 Verwijder uit favorieten
             </button>
             <button class="details">
@@ -129,7 +129,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove" >
                 Verwijder uit favorieten
             </button>
             <button class="details">
@@ -142,7 +142,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove" >
                 Verwijder uit favorieten
             </button>
             <button class="details">
@@ -155,7 +155,7 @@
             <button class="add">
                 Voeg toe aan favorieten
             </button>
-            <button class="remove" style = "display:none">
+            <button class="remove" >
                 Verwijder uit favorieten
             </button>
             <button class="details">
