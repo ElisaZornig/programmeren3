@@ -5,19 +5,56 @@ let buttons;
 let close;
 let detailsVenster
 let items = [];
-let container
-const url = 'bookDetails.php'; // Pas dit aan op basis van de locatie van je actions.php-bestand
+let url = 'bookDetails.php'; // Pas dit aan op basis van de locatie van je actions.php-bestand
 let urlDetails
 
 function init() {
     checkStorage()
     getBookData()
     boeken = document.getElementById('kinderboeken')
+
     buttons = document.getElementsByTagName('button');
     boeken.addEventListener('click', detailsButtonHandler);
     close = document.getElementById('close')
     close.addEventListener('click', closeDetails)
 
+}
+function detailsButtonHandler(e) {
+    e.preventDefault(); //Leave this one out to see te result
+    let clickedButton = e.target;
+    if(e.target.className === "details") {
+        let boek = clickedButton.parentElement;
+        let boekId = boek.id;
+        let text = boek.getElementsByTagName("h2")[0].innerHTML
+        detailsVenster = document.getElementById('detailsVenster')
+
+
+        detailsVenster.style.display = 'flex';
+        let title = document.querySelector('#detailsVenster h2')
+        title.innerHTML = text;
+        urlDetails = 'bookDetails.php?id=' + boekId
+        window.scrollTo(0, 0);
+        getBookDetails()
+    }
+    if(e.target.className === "add"){
+
+        let book = e.target.parentNode
+        let bookId = book.id
+        console.log(bookId)
+        items.push(bookId);
+        localStorage.setItem("all-favorites", JSON.stringify(items))
+        changeBackground(bookId)
+    }
+    if(e.target.className === "remove"){
+
+        let book = e.target.parentNode
+        let bookId = book.id
+        items = JSON.parse(localStorage.getItem("all-favorites"));
+        let index  = items.indexOf(bookId);
+        items.splice(index, 1);
+        localStorage.setItem("all-favorites", JSON.stringify(items))
+        removeBackground(bookId)
+    }
 }
 function getBookData() {
     fetch(url)
@@ -39,7 +76,8 @@ function getBookData() {
 }
 // Functie om boekdetails op te halen en in console.log te plaatsen
 function getBookDetails() {
-    fetch(url)
+    console.log(urlDetails)
+    fetch(urlDetails)
         .then(response => {
             if (!response.ok) {
                 throw new Error("Er is een fout opgetreden bij het ophalen van de boekdetails");
@@ -47,9 +85,6 @@ function getBookDetails() {
             return response.json();
         })
         .then(data => {
-            console.log("Details van het boek met ID 1:");
-            console.log(data);
-            // Vul detailsVenster met samenvatting en tags
             fillDetailsVenster(data);
         })
         .catch(errorHandler)
@@ -58,14 +93,11 @@ function getBookDetails() {
 // Functie om detailsVenster met samenvatting en tags te vullen
 function fillDetailsVenster(data) {
     detailsVenster = document.getElementById('detailsVenster');
-    const summary = document.createElement('p');
-    const tags = document.createElement('p');
-
-    summary.innertext = `Samenvatting: ${data.summary}`;
+    let summary = detailsVenster.getElementsByTagName('p')[0]
+    summary.innerText = data.summary
+    let tag = detailsVenster.getElementsByTagName('p')[1]
+    tag.innerText = data.tags.join(', ')
     // tags.textContent = `Tags: ${data.tags}`;
-
-    detailsVenster.append(summary);
-    detailsVenster.append(tags);
 }
 
 function errorHandler(error){
@@ -97,6 +129,7 @@ function createBook(book){
     const detailsButton = document.createElement("button");
     detailsButton.classList.add("details");
     detailsButton.textContent = "Details";
+
 
     // Elementen toevoegen aan de div
     divElement.append(h2Element);
@@ -133,43 +166,7 @@ function changeBackground(item) {
  *
  * @param e
  */
-function detailsButtonHandler(e) {
-    e.preventDefault(); //Leave this one out to see te result
-    let clickedButton = e.target;
-    if(e.target.className === "details") {
-        let boek = clickedButton.parentElement;
-        let boekId = boek.id;
-        let text = boek.getElementsByTagName("h2")[0].innerHTML
-        detailsVenster = document.getElementById('detailsVenster')
 
-
-        detailsVenster.style.display = 'flex';
-        let title = document.querySelector('#detailsVenster h2')
-        title.innerHTML = text;
-        urlDetails = 'bookDetails.php?id=' + boekId
-        console.log(urlDetails)
-        getBookDetails()
-    }
-    if(e.target.className === "add"){
-
-        let book = e.target.parentNode
-        let bookId = book.id
-        console.log(bookId)
-        items.push(bookId);
-        localStorage.setItem("all-favorites", JSON.stringify(items))
-        changeBackground(bookId)
-    }
-    if(e.target.className === "remove"){
-
-        let book = e.target.parentNode
-        let bookId = book.id
-        items = JSON.parse(localStorage.getItem("all-favorites"));
-        let index  = items.indexOf(bookId);
-        items.splice(index, 1);
-        localStorage.setItem("all-favorites", JSON.stringify(items))
-        removeBackground(bookId)
-    }
-}
 
 function closeDetails(){
     detailsVenster.style.display = 'none';
@@ -178,6 +175,7 @@ function removeBackground(item){
     let bookItem = document.getElementById(item)
     bookItem.classList.remove("favorite")
 }
+
 
 
 

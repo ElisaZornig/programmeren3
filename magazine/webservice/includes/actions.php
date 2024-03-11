@@ -78,44 +78,44 @@ function getBooksDetails($id)
 {
     $tags = [
         1 => [
-            "summary" => "Een spannend avontuur waarbij de hoofdpersoon een geheim recept ontdekt en het in de oven bakt.",
-            "tags" => ['avontuur', 'geheim', 'oven']
+            "summary" => "Een spannend avontuur waarbij Melle en zijn familie op vakantie gaan naar zee en ontdekken dat er Gorgels bestaan, kleine wezentjes die overal om ons heen zijn.",
+            "tags" => ['avontuur', 'fantasie', 'vriendschap']
         ],
         2 => [
-            "summary" => "Een boeiend verhaal over een jongen die ontdekt hoe je een heerlijke Hollandse maaltijd kunt maken...",
-            "tags" => ['Nederlands', 'gezond', 'stamppot', 'boerenkool']
+            "summary" => "Het verhaal van Dolfje Weerwolfje, een jongen die bij volle maan in een weerwolf verandert en samen met zijn vriendjes spannende avonturen beleeft.",
+            "tags" => ['fantasie', 'weerwolven', 'avontuur']
         ],
         3 => [
-            "summary" => "Een hartverwarmend verhaal over een maaltijd die nog lekkerder smaakt als je oma het maakt.",
-            "tags" => ['familie', 'traditie']
+            "summary" => "Een klassiek verhaal over Pluk die in zijn rode kraanwagentje in de Petteflet gaat wonen en bevriend raakt met alle bewoners.",
+            "tags" => ['kinderboek', 'avontuur', 'vriendschap']
         ],
         4 => [
-            "summary" => "Een favoriete maaltijd voor veel mensen na een avondje uit in de stad.",
-            "tags" => ['fastfood', 'lekker', 'vlees']
+            "summary" => "Korte verhalen over de avonturen van Jip en Janneke, twee buurkinderen die samen spelen en de wereld ontdekken.",
+            "tags" => ['kinderboek', 'avontuur', 'vriendschap']
         ],
         5 => [
-            "summary" => "Een specialiteit die je kunt proeven wanneer je op vakantie bent in Spanje.",
-            "tags" => ['vis']
+            "summary" => "Een spannend verhaal over een jongen die per ongeluk terug in de tijd reist naar de Middeleeuwen en daar allerlei avonturen beleeft.",
+            "tags" => ['avontuur', 'tijdreizen', 'geschiedenis']
         ],
         6 => [
-            "summary" => "Een magisch verhaal over cupcakes die tot leven komen.",
-            "tags" => ['magie', 'cupcakes']
+            "summary" => "Een humoristisch verhaal over de avonturen van de kwajongen Pietje Bell in de stad Rotterdam.",
+            "tags" => ['humor', 'avontuur', 'jongensboek']
         ],
         7 => [
-            "summary" => "Een avontuurlijk verhaal over een jongen die een chocoladefabriek ontdekt.",
-            "tags" => ['avontuur', 'chocolade']
+            "summary" => "Het verhaal van Stach die koning wil worden van Katoren en zeven moeilijke opdrachten moet volbrengen om dit te bereiken.",
+            "tags" => ['avontuur', 'fantasie', 'kinderboek']
         ],
         8 => [
-            "summary" => "Een verrassend verhaal over een meisje dat een zoete verrassing ontdekt.",
-            "tags" => ['verrassing', 'zoetigheid']
+            "summary" => "Een aangrijpend verhaal over een jongen die tijdens de Tweede Wereldoorlog in een moeilijke situatie belandt en moeilijke keuzes moet maken.",
+            "tags" => ['oorlog', 'oorlogsboek', 'jongeren']
         ],
         9 => [
-            "summary" => "Een grappig verhaal over een jongen die op avontuur gaat met kauwgom.",
-            "tags" => ['grappig', 'kauwgom']
+            "summary" => "Een grappig dagboek van Nikki, een meisje dat allerlei avonturen beleeft op school en thuis.",
+            "tags" => ['humor', 'dagboek', 'meidenboek']
         ],
         10 => [
-            "summary" => "Een betoverend verhaal over een ijssalon met magische krachten.",
-            "tags" => ['betoverend', 'ijs']
+            "summary" => "Het leven van Greg, een jongen die probeert populair te worden op school en daarbij allerlei grappige situaties meemaakt.",
+            "tags" => ['humor', 'school', 'jongensboek']
         ],
     ];
 

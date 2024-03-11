@@ -22,7 +22,11 @@
     </section>
     <section class="detail-venster" id="detailsVenster" style="display: none">
         <h2>title</h2>
-        <p>details</p>
+
+            <h3>Samenvatting:</h3>
+            <p>tekst</p>
+            <h3>Tags</h3>
+            <p>tags</p>
         <button class="close" id="close">
             Close
         </button>
