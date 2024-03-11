@@ -5,15 +5,108 @@ let buttons;
 let close;
 let detailsVenster
 let items = [];
+let container
+const url = 'bookDetails.php'; // Pas dit aan op basis van de locatie van je actions.php-bestand
+let urlDetails
 
 function init() {
     checkStorage()
+    getBookData()
     boeken = document.getElementById('kinderboeken')
     buttons = document.getElementsByTagName('button');
     boeken.addEventListener('click', detailsButtonHandler);
     close = document.getElementById('close')
     close.addEventListener('click', closeDetails)
 
+}
+function getBookData() {
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Er is een fout opgetreden bij het ophalen van de boekgegevens");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Titels van de boeken:");
+            boeken = document.getElementById('kinderboeken');
+            data.forEach(book => {
+                console.log(book.title);
+                createBook(book);
+            });
+        })
+        .catch(errorHandler)
+}
+// Functie om boekdetails op te halen en in console.log te plaatsen
+function getBookDetails() {
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Er is een fout opgetreden bij het ophalen van de boekdetails");
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Details van het boek met ID 1:");
+            console.log(data);
+            // Vul detailsVenster met samenvatting en tags
+            fillDetailsVenster(data);
+        })
+        .catch(errorHandler)
+}
+
+// Functie om detailsVenster met samenvatting en tags te vullen
+function fillDetailsVenster(data) {
+    detailsVenster = document.getElementById('detailsVenster');
+    const summary = document.createElement('p');
+    const tags = document.createElement('p');
+
+    summary.innertext = `Samenvatting: ${data.summary}`;
+    // tags.textContent = `Tags: ${data.tags}`;
+
+    detailsVenster.append(summary);
+    detailsVenster.append(tags);
+}
+
+function errorHandler(error){
+    console.log(error.message)
+}
+function createBook(book){
+    // Het creëren van het div-element
+    const divElement = document.createElement("div");
+    divElement.classList.add("boek");
+    divElement.id = book.id;
+
+    // Het creëren van de h2-element
+    const h2Element = document.createElement("h2");
+    h2Element.textContent = book.title;
+
+    // Het creëren van het img-element
+    const imgElement = document.createElement("img");
+    imgElement.src = `./img/${book.image}`;
+
+    // Het creëren van de button-elementen
+    const addButton = document.createElement("button");
+    addButton.classList.add("add");
+    addButton.textContent = "Voeg toe aan favorieten";
+
+    const removeButton = document.createElement("button");
+    removeButton.classList.add("remove");
+    removeButton.textContent = "Verwijder uit favorieten";
+
+    const detailsButton = document.createElement("button");
+    detailsButton.classList.add("details");
+    detailsButton.textContent = "Details";
+
+    // Elementen toevoegen aan de div
+    divElement.append(h2Element);
+    divElement.append(imgElement);
+    divElement.append(addButton);
+    divElement.append(removeButton);
+    divElement.append(detailsButton);
+
+    // Het toevoegen van het div-element aan de container
+    boeken.append(divElement);
 }
 
 function checkStorage(){
@@ -45,6 +138,7 @@ function detailsButtonHandler(e) {
     let clickedButton = e.target;
     if(e.target.className === "details") {
         let boek = clickedButton.parentElement;
+        let boekId = boek.id;
         let text = boek.getElementsByTagName("h2")[0].innerHTML
         detailsVenster = document.getElementById('detailsVenster')
 
@@ -52,6 +146,9 @@ function detailsButtonHandler(e) {
         detailsVenster.style.display = 'flex';
         let title = document.querySelector('#detailsVenster h2')
         title.innerHTML = text;
+        urlDetails = 'bookDetails.php?id=' + boekId
+        console.log(urlDetails)
+        getBookDetails()
     }
     if(e.target.className === "add"){
 
