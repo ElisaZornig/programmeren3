@@ -9,7 +9,7 @@ let url = 'bookDetails.php'; // Pas dit aan op basis van de locatie van je actio
 let urlDetails
 
 function init() {
-    checkStorage()
+
     getBookData()
     boeken = document.getElementById('kinderboeken')
 
@@ -17,6 +17,30 @@ function init() {
     boeken.addEventListener('click', detailsButtonHandler);
     close = document.getElementById('close')
     close.addEventListener('click', closeDetails)
+    window.addEventListener('resize', resizeHandler);
+
+    // Voer de resizeHandler-functie uit bij het laden van de pagina om de initiële waarde te controleren
+    resizeHandler();
+}
+
+// Handler-functie voor het resize event
+function resizeHandler() {
+    // Controleer of de schermgrootte kleiner is dan 500 pixels
+    if (window.innerWidth < 660) {
+        // Als de breedte kleiner is dan 500px, stel flex-direction in op 'column'
+        document.getElementById('kinderboeken').style.flexDirection = 'column';
+        const bookDivs = document.querySelectorAll('.boek');
+        bookDivs.forEach(bookDiv => {
+            bookDiv.style.width = '95vw';
+        });
+    } else {
+        // Anders, stel flex-direction in op 'row'
+        document.getElementById('kinderboeken').style.flexDirection = 'row';
+        const bookDivs = document.querySelectorAll('.boek');
+        bookDivs.forEach(bookDiv => {
+            bookDiv.style.width = '28vw';
+        });
+    }
 
 }
 function detailsButtonHandler(e) {
@@ -101,17 +125,21 @@ function fillDetailsVenster(data) {
 }
 
 function errorHandler(error){
-    console.log(error.message)
+    alert("Dit boek bestaat niet!");
 }
 function createBook(book){
     // Het creëren van het div-element
     const divElement = document.createElement("div");
     divElement.classList.add("boek");
     divElement.id = book.id;
+    divElement.dataset.id = book.id;
 
     // Het creëren van de h2-element
     const h2Element = document.createElement("h2");
-    h2Element.textContent = book.title;
+    h2Element.innerText = book.title;
+
+    const h3Element = document.createElement("h3");
+    h3Element.innerText = book.author;
 
     // Het creëren van het img-element
     const imgElement = document.createElement("img");
@@ -133,6 +161,7 @@ function createBook(book){
 
     // Elementen toevoegen aan de div
     divElement.append(h2Element);
+    divElement.append(h3Element);
     divElement.append(imgElement);
     divElement.append(addButton);
     divElement.append(removeButton);
@@ -140,6 +169,7 @@ function createBook(book){
 
     // Het toevoegen van het div-element aan de container
     boeken.append(divElement);
+    checkStorage()
 }
 
 function checkStorage(){
@@ -154,7 +184,7 @@ function checkStorage(){
 function changeBackground(item) {
     let allBooks = document.querySelectorAll(".boek")
     for (let j = 0; j < allBooks.length; j++){
-        if(item === allBooks[j].id){
+        if(item === allBooks[j].dataset.id){
             allBooks[j].classList.add("favorite")
         }
     }

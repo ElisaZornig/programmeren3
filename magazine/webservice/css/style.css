@@ -37,6 +37,12 @@ h2 {
     color: white;
     margin: 1rem;
 }
+h3 {
+    font-family: "boekFont", system-ui;
+    font-size: 2rem;
+    color: white;
+    margin: 1rem;
+}
 
 .kinderboeken {
     display: flex;
